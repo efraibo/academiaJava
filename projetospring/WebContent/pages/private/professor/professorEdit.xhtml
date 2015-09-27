@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<p:panelGrid columns="1" styleClass="width600px">
+				<h:inputHidden value="#{professorEditMB.professor.id}" />
+
+				<p:inputText placeholder="Nome" required="true" label="Nome"
+					value="#{professorEditMB.professor.nome}" styleClass="width500px"
+					maxlength="30" />
+
+				<p:inputMask mask="999999999-99" placeholder="CPF" required="true"
+					label="CPF" value="#{professorEditMB.professor.cpf}"
+					styleClass="width500px" maxlength="30" />
+
+				<p:selectOneMenu value="#{professorEditMB.professor.sexo}"
+					style="width:225px">
+					<f:selectItem itemLabel="Sexo" itemValue="" />
+					<f:selectItems itemLabel="#{sexo.descricao}" itemValue="#{sexo}"
+						var="sexo" value="#{professorEditMB.sexo}" />
+				</p:selectOneMenu>
+
+				<p:selectOneMenu value="#{professorEditMB.professor.tipoPessoa}"
+					style="width:225px">
+					<f:selectItem itemLabel="Tipo de Pessoa" itemValue="" />
+					<f:selectItems itemLabel="#{tipoPessoa.descricao}"
+						itemValue="#{tipoPessoa}" var="tipoPessoa"
+						value="#{professorEditMB.tipoPessoa}" />
+				</p:selectOneMenu>
+
+				<p:inputText placeholder="Instituicao" required="true"
+					label="Instituicao"
+					value="#{professorEditMB.professor.instituicaoEnsino}"
+					styleClass="width500px" maxlength="30" />
+
+				 <p:inputText placeholder="Data de Admissao" required="true"
+					label="Data de Admissao"
+					value="#{professorEditMB.professor.dtAdmissao}"
+					styleClass="width500px" maxlength="30" />
+					
+				<!-- <p:inputText placeholder="Data de Admissao" required="true"
+                    label="Data de Admissao"
+                    value="#{professorEditMB.professor.dtAdmissao}"
+                    styleClass="width500px" maxlength="30" >	
+				    <f:convertDateTime  pattern = "dd.MM.yyyy"  timeZone = "EST"  type = "dtAdmissao"  /> 	
+                </p:inputText>  -->
+                   
+				<p:selectOneMenu value="#{professorEditMB.professor.titulacao}"
+					style="width:225px">
+					<f:selectItem itemLabel="Titulação" itemValue="" />
+					<f:selectItems itemLabel="#{titulacao.titulo}"
+						itemValue="#{titulacao}" var="titulacao"
+						value="#{professorEditMB.listaTitulacao}" />
+				</p:selectOneMenu>
+
+				<p:selectOneMenu value="#{professorEditMB.professor.endereco}"
+					style="width:225px">
+					<f:selectItem itemLabel="Logradouro" itemValue="" />
+					<f:selectItems itemLabel="#{endereco.logradouro}"
+						itemValue="#{endereco}" var="endereco"
+						value="#{professorEditMB.listaEndereco}" />
+				</p:selectOneMenu>
+
+				<p:selectOneMenu value="#{professorEditMB.professor.endereco}"
+					style="width:225px">
+					<f:selectItem itemLabel="Bairro" itemValue="" />
+					<f:selectItems itemLabel="#{endereco.bairro}"
+						itemValue="#{endereco}" var="endereco"
+						value="#{professorEditMB.listaEndereco}" />
+				</p:selectOneMenu>
+
+				<p:selectOneMenu value="#{professorEditMB.professor.telefone}"
+					style="width:225px">
+					<f:selectItem itemLabel="Numero de Telefone" itemValue="" />
+					<f:selectItems itemLabel="#{telefone.numero}" itemValue="#{telefone}"
+						var="telefone" value="#{telefoneListMB.listaTelefone}" />
+				</p:selectOneMenu>
+
+				<p:commandButton value="salvar" action="#{professorEditMB.salvar()}"
+					ajax="false" />
+			</p:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

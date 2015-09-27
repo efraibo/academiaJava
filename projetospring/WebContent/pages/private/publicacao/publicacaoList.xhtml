@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<p:dataTable id="datatable" var="publicacao"
+				value="#{publicacaoListMB.listaPublicacao}" paginator="true" rows="10">
+				<p:column headerText="Titulo  de Publicacao" sortBy="#{publicacao.tituloPublicacao}">
+					<h:outputText value="#{publicacao.tituloPublicacao}" />
+				</p:column>
+				<p:column headerText="Descricao de Publicacao" sortBy="#{publicacao.descricaoPublicacao}">
+					<h:outputText value="#{publicacao.descricaoPublicacao}" />
+				</p:column>				
+                <p:column headerText="Meio De Comunicacao" sortBy="#{publicacao.meioDeComunicacao}">
+                    <h:outputText value="#{publicacao.meioDeComunicacao.descricao}" />
+                </p:column> 
+                
+                <p:column headerText="Aluno" sortBy="#{publicacao.aluno}">
+                    <h:outputText value="#{publicacao.aluno.nome}" />
+                </p:column>
+                
+                <p:column headerText="Professor" sortBy="#{publicacao.aluno.professor.nome}">
+                    <h:outputText value="#{publicacao.aluno.professor.nome}" />
+                </p:column>                              
+                			
+				<p:column>
+					<p:commandLink
+						actionListener="#{publicacaoEditMB.preAlterar(publicacao)}"
+						action="publicacaoEdit.xhtml">alterar</p:commandLink>
+				</p:column>
+				<p:column>
+					<p:commandLink update="datatable"
+						actionListener="#{publicacaoListMB.excluir(publicacao)}">excluir</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

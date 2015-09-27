@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<p:dataTable id="datatable" var="endereco"
+				value="#{enderecoListMB.listaEndereco}" paginator="true" rows="10">
+				<p:column headerText="Logradouro" sortBy="#{endereco.logradouro}">
+					<h:outputText value="#{endereco.logradouro}" />
+				</p:column>
+				<p:column headerText="Numero" sortBy="#{endereco.numero}">
+					<h:outputText value="#{endereco.numero}" />
+				</p:column>				
+                <p:column headerText="Cidade" sortBy="#{endereco.cidade.descricao}">
+                    <h:outputText value="#{endereco.cidade.descricao}" />
+                </p:column>                
+                <p:column headerText="UF" sortBy="#{endereco.uf}">
+                    <h:outputText value="#{endereco.uf}" />
+                </p:column>				
+				<p:column>
+					<p:commandLink
+						actionListener="#{enderecoEditMB.preAlterar(endereco)}"
+						action="enderecoEdit.xhtml">alterar</p:commandLink>
+				</p:column>
+				<p:column>
+					<p:commandLink update="datatable"
+						actionListener="#{enderecoListMB.excluir(endereco)}">excluir</p:commandLink>
+				</p:column>
+			</p:dataTable>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

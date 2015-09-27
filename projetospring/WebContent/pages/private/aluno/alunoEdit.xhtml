@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+    <ui:composition template="/pages/private/index.xhtml">
+        <ui:define name="conteudo">
+            <p:panelGrid columns="1" styleClass="width600px">
+                <h:inputHidden value="#{alunoEditMB.aluno.id}" />
+                
+                <p:inputText placeholder="Nome" required="true"
+                    label="Nome" value="#{alunoEditMB.aluno.nome}"
+                    styleClass="width500px" maxlength="30" />
+                    
+                <p:inputMask mask="999999999-99" placeholder="CPF" required="true" label="CPF"
+                value="#{alunoEditMB.aluno.cpf}" styleClass="width500px"
+                    maxlength="30"/>
+                
+               <p:selectOneMenu value="#{alunoEditMB.aluno.sexo}"
+                    style="width:225px">
+                    <f:selectItem itemLabel="Sexo" itemValue="" />
+                    <f:selectItems itemLabel="#{sexo.descricao}" 
+                        itemValue="#{sexo}" var="sexo" value="#{alunoEditMB.sexo}"/>                    
+                </p:selectOneMenu>
+                
+                <p:selectOneMenu value="#{alunoEditMB.aluno.tipoPessoa}"
+                    style="width:225px">
+                    <f:selectItem itemLabel="Tipo de Pessoa" itemValue="" />
+                    <f:selectItems itemLabel="#{tipoPessoa.descricao}" 
+                        itemValue="#{tipoPessoa}" var="tipoPessoa" value="#{alunoEditMB.tipoPessoa}"/>                    
+                </p:selectOneMenu>         
+                  
+                <p:selectOneMenu value="#{alunoEditMB.aluno.professor}"
+                    style="width:225px">
+                    <f:selectItem itemLabel="Professor" itemValue="" />
+                    <f:selectItems itemLabel="#{professor.nome}" 
+                        itemValue="#{professor}" var="professor" value="#{professorListMB.listaProfessor}"/>                    
+                </p:selectOneMenu> 
+                
+                <p:selectOneMenu value="#{alunoEditMB.aluno.endereco}"
+                    style="width:225px">
+                    <f:selectItem itemLabel="logradouro" itemValue="" />
+                    <f:selectItems itemLabel="#{endereco.logradouro}"
+                        itemValue="#{endereco}" var="endereco" value="#{alunoEditMB.listaEndereco}"/>                   
+                </p:selectOneMenu>    
+  
+                <p:selectOneMenu value="#{alunoEditMB.aluno.telefone}"
+                    style="width:225px">
+                    <f:selectItem itemLabel="Numero de Telefone" itemValue="" />
+                    <f:selectItems itemLabel="#{telefone.numero}" 
+                        itemValue="#{telefone}" var="telefone" value="#{telefoneListMB.listaTelefone}"/>                 
+                </p:selectOneMenu>                                                            
+                                
+               <p:commandButton value="salvar" action="#{alunoEditMB.salvar()}"
+                      ajax="false" />
+            </p:panelGrid>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Hello World JSF</title>
+
+</h:head>
+
+<h:body>
+
+	<h:outputText value="#{helloWorldMB.mensagemInicial}" />
+
+	<h:form>
+
+		<h:panelGrid>
+
+			<p:inputText value="#{helloWorldMB.nome}" />
+
+			<p:commandButton ajax="false" action="#{helloWorldMB.acao()}"
+				value="Submeter" />
+
+			<h:outputText value="#{helloWorldMB.nome}" />
+
+			<p:inputTextarea autoResize="false" value="#{helloWorldMB.textArea}" />
+
+			<h:selectOneMenu value="#{helloWorldMB.select}">
+
+				<f:selectItem itemLabel="Opção 1" itemValue="1" />
+
+				<f:selectItem itemLabel="Opção 2" itemValue="2" />
+
+			</h:selectOneMenu>
+
+			<p:pickList itemLabel="#{usuario}"
+				value="#{helloWorldMB.dualListUsuario}" var="usuario">
+
+			</p:pickList>
+
+			<p:dataTable value="#{helloWorldMB.listaUsuario}" var="usuario">
+				<p:column>
+
+					<h:outputText value="#{usuario.nome}" />
+
+				</p:column>
+
+			</p:dataTable>
+
+		</h:panelGrid>
+
+	</h:form>
+
+</h:body>
+
+</html>

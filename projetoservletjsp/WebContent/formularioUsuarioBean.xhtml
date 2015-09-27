@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<h:form>
+    <p:panel id="panel" header="Cadastro de Usuario">
+
+		<p:focus context="panel" />
+
+		<p:messages />
+
+		<h:panelGrid columns="15">
+			<p:outputLabel for="nome" value="Nome" />
+			<p:inputText id="nome" value="#{usuarioBean.nome}"
+				required="true" label="Sobrenome">
+				<f:validateLength minimum="2" />
+				
+			</p:inputText>
+			
+			<p:message for="nome" />
+
+			<p:outputLabel for="senha" value="Senha" />
+			<p:inputText id="senha" value="#{usuarioBean.senha}" required="true"
+				label="Senha" />
+			<p:message for="senha" />
+			
+			<p:outputLabel for="email" value="Email" />
+            <p:inputText id="email" value="#{usuarioBean.email}" required="true"
+                label="Email" />
+            <p:message for="email" />
+		</h:panelGrid>
+
+		<p:commandButton id="submitButton" value="Salvar" update="@parent"
+			actionListener="#{focusView.save}" />
+	</p:panel>
+	</h:form>
+</h:body>
+</html>

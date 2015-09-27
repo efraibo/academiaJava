@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:composition template="/pages/private/index.xhtml">
+		<ui:define name="conteudo">
+			<p:panelGrid columns="1" styleClass="width600px">
+				<h:inputHidden value="#{publicacaoEditMB.publicacao.id}" />
+				<p:inputText placeholder="Titulo de Publicação" required="true"
+					label="Titulo de Publicação"
+					value="#{publicacaoEditMB.publicacao.tituloPublicacao}"
+					styleClass="width500px" maxlength="100" />
+				<p:inputText placeholder="Descricao da Publicacao" required="true"
+					label="Descricao da Publicacao"
+					value="#{publicacaoEditMB.publicacao.descricaoPublicacao}"
+					styleClass="width500px" maxlength="30" />
+
+				<p:selectOneMenu
+					value="#{publicacaoEditMB.publicacao.meioDeComunicacao}"
+					style="width:225px">
+					<f:selectItem itemLabel="Meio de Comunicação" itemValue="" />
+					<f:selectItems itemLabel="#{meioDeComunicacao.descricao}"
+						itemValue="#{meioDeComunicacao}" var="meioDeComunicacao"
+						value="#{publicacaoEditMB.listaMeioDeComunicacao}" />
+				</p:selectOneMenu>
+
+				<p:selectOneMenu value="#{publicacaoEditMB.publicacao.aluno}"
+					style="width:225px">
+					<f:selectItem itemLabel="Aluno" itemValue="" />
+					<f:selectItems itemLabel="#{aluno.nome}" itemValue="#{aluno}"
+						var="aluno" value="#{publicacaoEditMB.listaAluno}" />
+				</p:selectOneMenu>
+
+				<!-- <p:selectOneMenu value="#{publicacaoEditMB.aluno.professor}"
+					style="width:225px">
+					<f:selectItem itemLabel="Professor" itemValue="" />
+					<f:selectItems value="#{professorListMB.listaProfessor}"
+						var="professor" itemLabel="#{professor.nome}"
+						itemValue="#{professor}" />
+				</p:selectOneMenu> -->
+
+				<p:commandButton value="salvar"
+					action="#{publicacaoEditMB.salvar()}" ajax="false" />
+			</p:panelGrid>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>
